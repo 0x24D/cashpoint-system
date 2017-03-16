@@ -33,6 +33,8 @@ public:
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
 	int		readInNumberOfTransactions() const;
+	int		readInCommand() const; //TODO: using instead of readInSearchCommand()
+	double	readInAmount() const;
 
     void	showProduceBalanceOnScreen(double bal) const;
     void	showDepositOnScreen(bool auth, double deposit) const;
@@ -40,12 +42,15 @@ public:
     void	showStatementOnScreen(const string&) const;
 	void	showMiniStatementOnScreen(const bool& isEmpty, const double& total, const string& str) const;
 	void	showDepositOnScreen(bool, const string&, double) const;
+	void	showNoTransactionsOnScreen() const;
+	void	showSearchMenu() const;
+	void	showMatchingTransactionsOnScreen(const double& a, const int& n, const string& str) const;
 
 private:
     //support functions
 	void	showCardIdentificationMenu() const;
 	void	showAccountProcessingMenu() const;
-    int		readInCommand() const;
+    //made readInCommand public
     double	readInPositiveAmount() const;
 	int		readInPositiveNumber() const;
 };

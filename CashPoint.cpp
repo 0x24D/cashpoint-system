@@ -127,6 +127,25 @@ void CashPoint::processOneAccountRequests() {
         option = theUI_.readInAccountProcessingCommand();   //select another option
 	}
 }
+
+void CashPoint::searchTransactions() const{
+	theUI_.showSearchMenu();
+	int opt = theUI_.readInCommand();
+	switch (opt)
+	{
+	case 1:m7a_showTransactionsForAmount();
+		break;
+	//case 2:m7b_showTransactionsForTitle();
+		break;
+	//case 3:m7c_showTransactionsForDate();
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+}
+
 void CashPoint::performAccountProcessingCommand(int option) {
 	switch (option)
 	{
@@ -141,6 +160,8 @@ void CashPoint::performAccountProcessingCommand(int option) {
 		case 5: m5_showAllDepositsTransactions();
 				break;
 		case 6: m6_showMiniStatement();
+				break;
+		case 7: m7_searchForTransactions();
 				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
@@ -198,7 +219,23 @@ void CashPoint::m6_showMiniStatement() const{
 	}
 	theUI_.showMiniStatementOnScreen(isEmpty, total, (mad + str));
 }
-
+//---option 7
+void CashPoint::m7_searchForTransactions() const{
+	assert(p_theActiveAccount_ != nullptr);
+	bool isEmpty(p_theActiveAccount_->isEmptyTransactionList());
+	if (isEmpty)
+		theUI_.showNoTransactionsOnScreen();
+	else
+		searchTransactions();
+}
+void CashPoint::m7a_showTransactionsForAmount() const{
+	assert(p_theActiveAccount_ != nullptr); //TODO: might not be needed
+	double a = theUI_.readInAmount();
+	int n;
+	string str;
+	p_theActiveAccount_->produceTransactionsForAmount(a, n, str);
+	theUI_.showMatchingTransactionsOnScreen(a, n, str);
+}
 //------private file functions
 
 bool CashPoint::canOpenFile(const string& filename) const {

@@ -129,6 +129,18 @@ int UserInterface::readInNumberOfTransactions() const{
 	cout << "\n NUMBER OF TRANSACTIONS: ";
 	return (readInPositiveNumber());
 }
+int UserInterface::readInCommand() const{
+	int com;
+	cout << "\n          ENTER YOUR COMMAND: ";
+	cin >> com;
+	return com;
+}
+double UserInterface::readInAmount() const{
+	cout << "\nENTER REQUIRED AMOUNT: ";
+	double amount;
+	cin >> amount;
+	return amount;
+}
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen(double balance) const {
@@ -180,6 +192,31 @@ void UserInterface::showDepositOnScreen(bool noTransaction, const string& str, d
 	}
 }
 
+void UserInterface::showNoTransactionsOnScreen() const{
+	cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+}
+
+void UserInterface::showSearchMenu() const{
+	cout << "\nSELECT AN OPTION...\n";
+	cout << "\n1: SEARCH BY AMOUNT";
+	cout << "\n2: SEARCH BY TITLE";
+	cout << "\n3: SEARCH BY DATE";
+	cout << "\n4: EXIT WITHOUT SEARCHING";
+}
+
+void UserInterface::showMatchingTransactionsOnScreen(const double& a, const int& n, const string& str) const{
+	if (n == 0)
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT MATCH THE SEARCH CRITERION";
+	else{
+		cout << "\n" << str;
+		if (n == 1)
+			cout << "\nTHERE ARE " << n << " TRANSACTION IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+		else
+			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+
+	}
+}
+
 //---------------------------------------------------------------------------
 //private support member functions
 //---------------------------------------------------------------------------
@@ -189,12 +226,6 @@ void UserInterface::showWelcomeScreen() const {
 }
 void UserInterface::showByeScreen() const {
     cout << "\n\n\n________________NEXT CUSTOMER...\n\n";
-}
-int UserInterface::readInCommand() const{
-	int com;
-	cout << "\n          ENTER YOUR COMMAND: ";
-	cin >> com;
-	return com;
 }
 void UserInterface::showErrorInvalidCommand() const {
 	cout << "\nINVALID COMMAND CHOICE, TRY AGAIN";

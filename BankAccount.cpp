@@ -80,6 +80,12 @@ void BankAccount::produceNMostRecentTransactions(const int& num, string& str, do
 	str = "\n" + trl.toFormattedString();
 }
 
+void BankAccount::produceTransactionsForAmount(const double& a, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsForAmount(a));
+	n = trl.size();
+	str = trl.toFormattedString();
+}
+
 const string BankAccount::prepareFormattedStatement() const {
 	ostringstream os;
 	//account details

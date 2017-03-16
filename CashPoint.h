@@ -33,6 +33,7 @@ private:
 	int  validateAccount(const string&) const;
 	void processOneCustomerRequests();
 	void processOneAccountRequests();
+	void searchTransactions() const;
 
     void performSubMenuCommand(int);
     //commands
@@ -48,6 +49,9 @@ private:
 	void m5_showAllDepositsTransactions() const;
 	//option 6
 	void m6_showMiniStatement() const;
+	//option 7
+	void m7_searchForTransactions() const;
+	void m7a_showTransactionsForAmount() const;
 
     //support file handling functions and creation of dynamic objects
     bool canOpenFile(const string&) const;

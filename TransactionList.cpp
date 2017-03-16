@@ -64,6 +64,17 @@ const TransactionList TransactionList::getMostRecentTransactions(const int& num)
 	return ret;
 }
 
+const TransactionList TransactionList::getTransactionsForAmount(const double& a) const{
+	TransactionList temp(*this);
+	TransactionList ret;
+	while (temp.size() > 0){
+		if ((temp.newestTransaction()).getAmount() == a)
+			ret.addNewTransaction(temp.newestTransaction());
+		temp.deleteFirstTransaction();
+	}
+	return ret;
+}
+
 const string TransactionList::toFormattedString() const {
 //return transaction list as a (formatted) string
 	ostringstream os_transactionlist;

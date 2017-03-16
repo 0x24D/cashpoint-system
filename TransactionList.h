@@ -22,6 +22,7 @@ public:
 	const TransactionList getAllDepositTransactions() const;
 	double getTotalTransactions() const;
 	const TransactionList getMostRecentTransactions(const int& num) const;
+	const TransactionList getTransactionsForAmount(const double& a) const;
 
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string
 	ostream& putDataInStream(ostream& os) const;	//send TransactionList info into an output stream
