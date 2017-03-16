@@ -64,11 +64,32 @@ const TransactionList TransactionList::getMostRecentTransactions(const int& num)
 	return ret;
 }
 
-const TransactionList TransactionList::getTransactionsForAmount(const double& a) const{
+const TransactionList TransactionList::getTransactionsForSearchCriterion(const double& a) const{
 	TransactionList temp(*this);
 	TransactionList ret;
 	while (temp.size() > 0){
 		if ((temp.newestTransaction()).getAmount() == a)
+			ret.addNewTransaction(temp.newestTransaction());
+		temp.deleteFirstTransaction();
+	}
+	return ret;
+}
+
+const TransactionList TransactionList::getTransactionsForSearchCriterion(const string& title) const{
+	TransactionList temp(*this);
+	TransactionList ret;
+	while (temp.size() > 0){
+		if ((temp.newestTransaction()).getTitle() == title)
+			ret.addNewTransaction(temp.newestTransaction());
+		temp.deleteFirstTransaction();
+	}
+	return ret;
+}
+const TransactionList TransactionList::getTransactionsForSearchCriterion(const Date& date) const{
+	TransactionList temp(*this);
+	TransactionList ret;
+	while (temp.size() > 0){
+		if ((temp.newestTransaction()).getDate() == date)
 			ret.addNewTransaction(temp.newestTransaction());
 		temp.deleteFirstTransaction();
 	}

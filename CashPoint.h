@@ -52,6 +52,8 @@ private:
 	//option 7
 	void m7_searchForTransactions() const;
 	void m7a_showTransactionsForAmount() const;
+	void m7b_showTransactionsForTitle() const;
+	void m7c_showTransactionsForDate() const;
 
     //support file handling functions and creation of dynamic objects
     bool canOpenFile(const string&) const;

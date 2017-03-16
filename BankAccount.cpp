@@ -80,8 +80,19 @@ void BankAccount::produceNMostRecentTransactions(const int& num, string& str, do
 	str = "\n" + trl.toFormattedString();
 }
 
-void BankAccount::produceTransactionsForAmount(const double& a, int& n, string& str) const{
-	TransactionList trl(transactions_.getTransactionsForAmount(a));
+void BankAccount::produceTransactionsForSearchCriterion(const double& a, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsForSearchCriterion(a));
+	n = trl.size();
+	str = trl.toFormattedString();
+}
+
+void BankAccount::produceTransactionsForSearchCriterion(const string& title, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsForSearchCriterion(title));
+	n = trl.size();
+	str = trl.toFormattedString();
+}
+void BankAccount::produceTransactionsForSearchCriterion(const Date& date, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsForSearchCriterion(date));
 	n = trl.size();
 	str = trl.toFormattedString();
 }
@@ -94,6 +105,7 @@ const string BankAccount::prepareFormattedStatement() const {
 	os << prepareFormattedTransactionList();
 	return os.str();
 }
+
 void BankAccount::readInBankAccountFromFile(const string& fileName) {
 	ifstream fromFile;
 	fromFile.open(fileName.c_str(), ios::in); 	//open file in read mode

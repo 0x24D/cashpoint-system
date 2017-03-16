@@ -136,10 +136,27 @@ int UserInterface::readInCommand() const{
 	return com;
 }
 double UserInterface::readInAmount() const{
-	cout << "\nENTER REQUIRED AMOUNT: ";
 	double amount;
+	cout << "\nENTER REQUIRED AMOUNT: ";
 	cin >> amount;
 	return amount;
+}
+string UserInterface::readInTitle() const{
+	string title;
+	cout << "\nENTER REQUIRED TITLE: ";
+	cin >> title; //TODO: check if valid - not blank string
+	return title;
+}
+Date UserInterface::readInDate() const{
+	int day, month, year;
+	cout << "\nENTER REQUIRED DAY: ";
+	cin >> day;
+	cout << "\nENTER REQUIRED MONTH: ";
+	cin >> month;
+	cout << "\nENTER REQUIRED YEAR: ";
+	cin >> year;
+	Date date(day, month, year); //TODO: check if valid - as done in option 8
+	return date;
 }
 //output functions
 
@@ -210,7 +227,33 @@ void UserInterface::showMatchingTransactionsOnScreen(const double& a, const int&
 	else{
 		cout << "\n" << str;
 		if (n == 1)
-			cout << "\nTHERE ARE " << n << " TRANSACTION IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+			cout << "\nTHERE IS " << n << " TRANSACTION IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+		else
+			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+
+	}
+}
+
+void UserInterface::showMatchingTransactionsOnScreen(const string& title, const int& n, const string& str) const{
+	if (n == 0)
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT MATCH THE SEARCH CRITERION";
+	else{
+		cout << "\n" << str;
+		if (n == 1)
+			cout << "\nTHERE IS " << n << " TRANSACTION IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+		else
+			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+
+	}
+}
+
+void UserInterface::showMatchingTransactionsOnScreen(const Date& date, const int& n, const string& str) const{
+	if (n == 0)
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT MATCH THE SEARCH CRITERION";
+	else{
+		cout << "\n" << str;
+		if (n == 1)
+			cout << "\nTHERE IS " << n << " TRANSACTION IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
 		else
 			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
 

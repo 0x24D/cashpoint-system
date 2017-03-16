@@ -135,9 +135,9 @@ void CashPoint::searchTransactions() const{
 	{
 	case 1:m7a_showTransactionsForAmount();
 		break;
-	//case 2:m7b_showTransactionsForTitle();
+	case 2:m7b_showTransactionsForTitle();
 		break;
-	//case 3:m7c_showTransactionsForDate();
+	case 3:m7c_showTransactionsForDate();
 		break;
 	case 4:
 		break;
@@ -233,8 +233,24 @@ void CashPoint::m7a_showTransactionsForAmount() const{
 	double a = theUI_.readInAmount();
 	int n;
 	string str;
-	p_theActiveAccount_->produceTransactionsForAmount(a, n, str);
+	p_theActiveAccount_->produceTransactionsForSearchCriterion(a, n, str);
 	theUI_.showMatchingTransactionsOnScreen(a, n, str);
+}
+void CashPoint::m7b_showTransactionsForTitle() const{
+	assert(p_theActiveAccount_ != nullptr); //TODO: might not be needed
+	string title = theUI_.readInTitle();
+	int n;
+	string str;
+	p_theActiveAccount_->produceTransactionsForSearchCriterion(title, n, str);
+	theUI_.showMatchingTransactionsOnScreen(title, n, str);
+}
+void CashPoint::m7c_showTransactionsForDate() const{
+	assert(p_theActiveAccount_ != nullptr); //TODO: might not be needed
+	Date date = theUI_.readInDate();
+	int n;
+	string str;
+	p_theActiveAccount_->produceTransactionsForSearchCriterion(date, n, str);
+	theUI_.showMatchingTransactionsOnScreen(date, n, str);
 }
 //------private file functions
 

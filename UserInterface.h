@@ -35,6 +35,8 @@ public:
 	int		readInNumberOfTransactions() const;
 	int		readInCommand() const; //TODO: using instead of readInSearchCommand()
 	double	readInAmount() const;
+	string  readInTitle() const;
+	Date	readInDate() const;
 
     void	showProduceBalanceOnScreen(double bal) const;
     void	showDepositOnScreen(bool auth, double deposit) const;
@@ -45,6 +47,8 @@ public:
 	void	showNoTransactionsOnScreen() const;
 	void	showSearchMenu() const;
 	void	showMatchingTransactionsOnScreen(const double& a, const int& n, const string& str) const;
+	void	showMatchingTransactionsOnScreen(const string& title, const int& n, const string& str) const;
+	void	showMatchingTransactionsOnScreen(const Date& date, const int& n, const string& str) const;
 
 private:
     //support functions
