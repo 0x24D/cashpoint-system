@@ -40,7 +40,7 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       3                 Deposit into account";
 	cout << "\n       4                       Show statement";
 	cout << "\n       5                    Show all deposits";
-	cout << "\n       6                  Show mini statement  //TO BE IMPLEMENTED FOR Task 1c";
+	cout << "\n       6                  Show mini statement";
 	cout << "\n       7                  Search Transactions  //TO BE IMPLEMENTED FOR Task 1c";
 	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR Task 1c";
 	cout << "\n       9                 Show Funds Available  //TO BE IMPLEMENTED FOR Task 1c";
@@ -125,6 +125,10 @@ double UserInterface::readInDepositAmount() const {
     cout << "\nAMOUNT TO DEPOSIT: \234" ;
 	return (readInPositiveAmount());
 }
+int UserInterface::readInNumberOfTransactions() const{
+	cout << "\n NUMBER OF TRANSACTIONS: ";
+	return (readInPositiveNumber());
+}
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen(double balance) const {
@@ -152,6 +156,17 @@ void UserInterface::showStatementOnScreen(const string& statement) const {
     cout << "\n________ ACCOUNT STATEMENT _____";
 	cout << statement;
     cout << "\n________ END ACCOUNT STATEMENT _____";
+}
+void UserInterface::showMiniStatementOnScreen(const bool& isEmpty, const double& total, const string& str) const {
+	if (isEmpty)
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT";
+	else{
+		cout << "\nRECENT TRANSACTIONS REQUESTED AT " << Time::currentTime() << " ON " << Date::currentDate();
+		cout << "\n________ ACCOUNT STATEMENT _____";
+		cout << str;
+		cout << "TOTAL CUMULATED AMOUNT: \234" << total;
+		cout << "\n________ END ACCOUNT STATEMENT _____";
+	}
 }
 
 void UserInterface::showDepositOnScreen(bool noTransaction, const string& str, double total) const {
@@ -193,4 +208,14 @@ double UserInterface::readInPositiveAmount() const {
 		cin >> amount;
 	}
     return amount;
+}
+int UserInterface::readInPositiveNumber() const {
+	int number;
+	cin >> number;
+	while (number <= 0)
+	{
+		cout << "\nNUMBER SHOULD BE A POSITIVE NUMBER, TRY AGAIN: ";
+		cin >> number;
+	}
+	return number;
 }

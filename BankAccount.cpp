@@ -74,10 +74,16 @@ void BankAccount::produceAllDepositTransactions(string& str, double& total) cons
 
 }
 
+void BankAccount::produceNMostRecentTransactions(const int& num, string& str, double& total) const{
+	TransactionList trl(transactions_.getMostRecentTransactions(num));
+	total = trl.getTotalTransactions();
+	str = "\n" + trl.toFormattedString();
+}
+
 const string BankAccount::prepareFormattedStatement() const {
 	ostringstream os;
 	//account details
-	os << prepareFormattedAccountDetails();
+	os << prepareFormattedMiniAccountDetails();
 	//list of transactions (or message if empty)
 	os << prepareFormattedTransactionList();
 	return os.str();
@@ -147,7 +153,7 @@ const string BankAccount::accountType(char n)
 	}
 	return type;
 }
-const string BankAccount::prepareFormattedAccountDetails() const {
+const string BankAccount::prepareFormattedMiniAccountDetails() const {
 	//collect account details in string
 	ostringstream os;
 	//account details

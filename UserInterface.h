@@ -32,11 +32,13 @@ public:
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
+	int		readInNumberOfTransactions() const;
 
     void	showProduceBalanceOnScreen(double bal) const;
     void	showDepositOnScreen(bool auth, double deposit) const;
     void	showWithdrawalOnScreen(bool auth, double withdrawal) const;
     void	showStatementOnScreen(const string&) const;
+	void	showMiniStatementOnScreen(const bool& isEmpty, const double& total, const string& str) const;
 	void	showDepositOnScreen(bool, const string&, double) const;
 
 private:
@@ -45,6 +47,7 @@ private:
 	void	showAccountProcessingMenu() const;
     int		readInCommand() const;
     double	readInPositiveAmount() const;
+	int		readInPositiveNumber() const;
 };
 
 #endif

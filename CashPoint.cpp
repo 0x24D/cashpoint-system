@@ -12,7 +12,7 @@
 
 CashPoint::CashPoint()
 	: p_theActiveAccount_(nullptr), p_theCashCard_(nullptr)
-{ }
+{}
 
 CashPoint::~CashPoint()
 {
@@ -140,6 +140,8 @@ void CashPoint::performAccountProcessingCommand(int option) {
 				break;
 		case 5: m5_showAllDepositsTransactions();
 				break;
+		case 6: m6_showMiniStatement();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -182,6 +184,19 @@ void CashPoint::m5_showAllDepositsTransactions() const {
 	if (!noTransaction)
 		p_theActiveAccount_->produceAllDepositTransactions(str, total);
 	theUI_.showDepositOnScreen(noTransaction, str, total);
+}
+//---option 6
+void CashPoint::m6_showMiniStatement() const{
+	assert(p_theActiveAccount_ != nullptr);
+	bool isEmpty(p_theActiveAccount_->isEmptyTransactionList());
+	string str, mad;
+	double total(0.0);
+	if (!isEmpty){
+		int numTransactions(theUI_.readInNumberOfTransactions());
+		p_theActiveAccount_->produceNMostRecentTransactions(numTransactions, str, total);
+		mad = p_theActiveAccount_->prepareFormattedMiniAccountDetails();
+	}
+	theUI_.showMiniStatementOnScreen(isEmpty, total, (mad + str));
 }
 
 //------private file functions

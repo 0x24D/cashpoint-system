@@ -36,6 +36,7 @@ public:
 	bool canWithdraw(double amount) const;
 	void recordWithdrawal(double amount);
 	void produceAllDepositTransactions(string& str, double& total) const;
+	void produceNMostRecentTransactions(const int& num, string& str, double& total) const;
 
 	static const string accountType(char n);
 	void readInBankAccountFromFile(const string& fileName);
@@ -46,7 +47,7 @@ public:
 	istream& getDataFromStream(istream& is);
 	istream& getAccountDataFromStream(istream& is);
 
-	const string prepareFormattedAccountDetails() const;
+	const string prepareFormattedMiniAccountDetails() const;
 	const string prepareFormattedTransactionList() const;
 
 private:

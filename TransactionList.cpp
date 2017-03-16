@@ -53,6 +53,17 @@ double TransactionList::getTotalTransactions() const{
 	return total; // TODO: NOT FINISHED
 }
 
+const TransactionList TransactionList::getMostRecentTransactions(const int& num) const{
+	TransactionList temp(*this);
+	TransactionList ret;
+	for (int i = 0; i < num; i++)
+		if (temp.size() != 0){
+			ret.addNewTransaction(temp.newestTransaction());
+			temp.deleteFirstTransaction();
+		}
+	return ret;
+}
+
 const string TransactionList::toFormattedString() const {
 //return transaction list as a (formatted) string
 	ostringstream os_transactionlist;
