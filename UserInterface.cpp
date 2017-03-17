@@ -42,8 +42,8 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       5                    Show all deposits";
 	cout << "\n       6                  Show mini statement";
 	cout << "\n       7                  Search Transactions";
-	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR Task 1c";
-	cout << "\n       9                 Show Funds Available  //TO BE IMPLEMENTED FOR Task 1c";
+	cout << "\n       8    Clear all transactions up to date";
+	cout << "\n       9                 Show Funds Available";
 	cout << "\n       10         Transfer to another account  //TO BE IMPLEMENTED FOR Task 1c";
 	cout << "\n         ________________________________________";
 }
@@ -161,6 +161,7 @@ Date UserInterface::readInDate() const{
 Date UserInterface::readInValidDate(const Date& cd) const{
 	Date aDate(readInDate());
 	bool isValid(aDate.isValid(cd));
+	return aDate;
 }
 bool UserInterface::readInConfirmDeletion() const{
 	char input;
@@ -289,6 +290,10 @@ void UserInterface::showDeletionOfTransactionsUpToDateOnScreen(const int& n, con
 		cout << "\nOPERATION CANCELLED: NO TRANSACTIONS DELETED";
 	else
 		cout << "\nTHE " << n << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << d << " HAVE BEEN DELETED";
+}
+
+void UserInterface::showFundsAvailableOnScreen(const bool& isEmpty, const string& mad, const double& m) const{
+	cout << mad << " " << m;
 }
 
 //---------------------------------------------------------------------------

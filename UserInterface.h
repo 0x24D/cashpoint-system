@@ -53,6 +53,7 @@ public:
 	void	showMatchingTransactionsOnScreen(const Date& date, const int& n, const string& str) const;
 	void	showTransactionsUpToDateOnScreen(const bool& isEmpty, const Date& d, const int& n, const string& str) const;
 	void	showDeletionOfTransactionsUpToDateOnScreen(const int& n, const Date& d, const bool& deletionConfirmed) const;
+	void	showFundsAvailableOnScreen(const bool& isEmpty, const string& mad, const double& m) const;
 
 private:
     //support functions

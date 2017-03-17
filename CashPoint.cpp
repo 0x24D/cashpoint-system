@@ -165,6 +165,8 @@ void CashPoint::performAccountProcessingCommand(int option) {
 				break;
 		case 8: m8_clearTransactionsUpToDate();
 				break;
+		case 9: m9_showFundsAvailableOnAllAccounts();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -273,6 +275,24 @@ void CashPoint::m8_clearTransactionsUpToDate() const{
 			p_theActiveAccount_->recordDeleteTransactionsUpToDate(d);
 		theUI_.showDeletionOfTransactionsUpToDateOnScreen(n, d, deletionConfirmed);
 	}
+}
+//---option 9
+void CashPoint::m9_showFundsAvailableOnAllAccounts(){
+	assert(p_theActiveAccount_ != nullptr);
+	List<string> accts(p_theCashCard_->getAccountsList());
+	bool isEmpty(accts.isEmpty());
+	double m;
+	string mad;
+	while (!isEmpty){
+		string first = FILEPATH + "account_" + accts.first() + ".txt";
+		BankAccount* p_acct(activateBankAccount(first));
+		m = p_acct->maxWithdrawalAllowed();
+		mad = p_acct->prepareFormattedMiniAccountDetails();
+		p_acct = releaseBankAccount(p_acct, first);
+		accts.deleteFirst();
+		isEmpty = accts.isEmpty();
+	}
+	theUI_.showFundsAvailableOnScreen(isEmpty, mad, m);
 }
 //------private file functions
 
