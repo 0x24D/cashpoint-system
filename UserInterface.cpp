@@ -293,7 +293,7 @@ void UserInterface::showDeletionOfTransactionsUpToDateOnScreen(const int& n, con
 }
 
 void UserInterface::showFundsAvailableOnScreen(const bool& isEmpty, const string& mad, const double& m) const{
-	cout << mad << " " << m;
+	cout <<"\n" << mad << "\nTOTAL WITHDRAWAL AMOUNT: \234" << m;
 }
 
 //---------------------------------------------------------------------------

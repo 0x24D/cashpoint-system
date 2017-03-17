@@ -281,13 +281,13 @@ void CashPoint::m9_showFundsAvailableOnAllAccounts(){
 	assert(p_theActiveAccount_ != nullptr);
 	List<string> accts(p_theCashCard_->getAccountsList());
 	bool isEmpty(accts.isEmpty());
-	double m;
-	string mad;
+	string mad("");
+	double m(0.0);
 	while (!isEmpty){
 		string first = FILEPATH + "account_" + accts.first() + ".txt";
 		BankAccount* p_acct(activateBankAccount(first));
-		m = p_acct->maxWithdrawalAllowed();
-		mad = p_acct->prepareFormattedMiniAccountDetails();
+		m += p_acct->maxWithdrawalAllowed();
+		mad += p_acct->prepareFormattedMiniAccountDetails();
 		p_acct = releaseBankAccount(p_acct, first);
 		accts.deleteFirst();
 		isEmpty = accts.isEmpty();
