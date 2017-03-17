@@ -35,6 +35,7 @@ public:
 	double maxWithdrawalAllowed() const;
 	bool canWithdraw(double amount) const;
 	void recordWithdrawal(double amount);
+	void recordDeleteTransactionsUpToDate(const Date& d) const;
 	void produceAllDepositTransactions(string& str, double& total) const;
 	void produceNMostRecentTransactions(const int& num, string& str, double& total) const;
 	void produceTransactionsForSearchCriterion(const double& a, int& n, string& str) const;

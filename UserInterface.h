@@ -38,6 +38,7 @@ public:
 	string  readInTitle() const;
 	Date	readInDate() const;
 	Date	readInValidDate(const Date& cd) const;
+	bool	readInConfirmDeletion() const;
 
     void	showProduceBalanceOnScreen(double bal) const;
     void	showDepositOnScreen(bool auth, double deposit) const;
@@ -50,6 +51,8 @@ public:
 	void	showMatchingTransactionsOnScreen(const double& a, const int& n, const string& str) const;
 	void	showMatchingTransactionsOnScreen(const string& title, const int& n, const string& str) const;
 	void	showMatchingTransactionsOnScreen(const Date& date, const int& n, const string& str) const;
+	void	showTransactionsUpToDateOnScreen(const bool& isEmpty, const Date& d, const int& n, const string& str) const;
+	void	showDeletionOfTransactionsUpToDateOnScreen(const int& n, const Date& d, const bool& deletionConfirmed) const;
 
 private:
     //support functions

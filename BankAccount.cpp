@@ -67,6 +67,10 @@ void BankAccount::recordWithdrawal(double amountToWithdraw) {
     updateBalance(-amountToWithdraw);			//decrease balance_
 }
 
+void BankAccount::recordDeleteTransactionsUpToDate(const Date& d) const{
+	transactions_.getTransactionsUpToDate(d);
+}
+
 void BankAccount::produceAllDepositTransactions(string& str, double& total) const {
 	TransactionList trl(transactions_.getAllDepositTransactions());
 	total =	trl.getTotalTransactions();

@@ -27,6 +27,11 @@ void TransactionList::deleteFirstTransaction() {
 void TransactionList::deleteGivenTransaction(const Transaction& tr) {
     listOfTransactions_.deleteOne(tr);
 }
+void TransactionList::deleteTransactionsUpToDate(const Date& d){
+	while (size() > 0)
+		if (newestTransaction().getDate < d)
+			deleteFirstTransaction();
+}
 int TransactionList::size() const {
     return (listOfTransactions_.length());
 }

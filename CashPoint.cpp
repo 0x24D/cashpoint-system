@@ -258,14 +258,21 @@ void CashPoint::m7c_showTransactionsForDate() const{
 void CashPoint::m8_clearTransactionsUpToDate() const{
 	assert(p_theActiveAccount_ != nullptr);
 	bool isEmpty(p_theActiveAccount_->isEmptyTransactionList());
+	Date d;
+	int n;
+	string str;
 	if (!isEmpty){
 		Date cd(p_theActiveAccount_->getCreationDate());
-		Date d(theUI_.readInValidDate(cd));
-		int n;
-		string str;
+		d = theUI_.readInValidDate(cd);
 		p_theActiveAccount_->produceTransactionsUpToDate(d, n, str);
 	}
-	theUI_.showTransactionsUpToDateOnScreen(isEmpty, d, n, str); //TODO: implement from sequence 5
+	theUI_.showTransactionsUpToDateOnScreen(isEmpty, d, n, str);
+	if (!isEmpty && !str.empty()){
+		bool deletionConfirmed(theUI_.readInConfirmDeletion());
+		if (deletionConfirmed)
+			p_theActiveAccount_->recordDeleteTransactionsUpToDate(d);
+		theUI_.showDeletionOfTransactionsUpToDateOnScreen(n, d, deletionConfirmed);
+	}
 }
 //------private file functions
 

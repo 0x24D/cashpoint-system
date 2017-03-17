@@ -18,6 +18,7 @@ public:
     const  TransactionList olderTransactions() const;
     void   deleteFirstTransaction();
     void   deleteGivenTransaction(const Transaction&);
+	void   deleteTransactionsUpToDate(const Date& d);
 	int    size() const;
 	const TransactionList getAllDepositTransactions() const;
 	double getTotalTransactions() const;

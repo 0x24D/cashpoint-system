@@ -162,6 +162,14 @@ Date UserInterface::readInValidDate(const Date& cd) const{
 	Date aDate(readInDate());
 	bool isValid(aDate.isValid(cd));
 }
+bool UserInterface::readInConfirmDeletion() const{
+	char input;
+	bool ret;
+	cout << "\nCONFIRM DELETION OF ABOVE TRANSACTIONS: ";
+	cin >> input;
+	(toupper(input) == 'Y') ? ret = true : ret = false;
+	return ret;
+}
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen(double balance) const {
@@ -262,6 +270,25 @@ void UserInterface::showMatchingTransactionsOnScreen(const Date& date, const int
 			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
 
 	}
+}
+
+void UserInterface::showTransactionsUpToDateOnScreen(const bool& isEmpty, const Date& d, const int& n, const string& str) const{
+	if (isEmpty)
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << d;
+	else{
+		cout << "\n" << str;
+		if (n == 1)
+			cout << "\nTHERE IS " << n << " TRANSACTION IN BANK ACCOUNT UP TO DATE " << d;
+		else
+			cout << "\nTHERE ARE " << n << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << d;
+	}
+}
+
+void UserInterface::showDeletionOfTransactionsUpToDateOnScreen(const int& n, const Date& d, const bool& deletionConfirmed) const{
+	if (!deletionConfirmed)
+		cout << "\nOPERATION CANCELLED: NO TRANSACTIONS DELETED";
+	else
+		cout << "\nTHE " << n << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << d << " HAVE BEEN DELETED";
 }
 
 //---------------------------------------------------------------------------
