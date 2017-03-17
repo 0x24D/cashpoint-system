@@ -41,7 +41,7 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       4                       Show statement";
 	cout << "\n       5                    Show all deposits";
 	cout << "\n       6                  Show mini statement";
-	cout << "\n       7                  Search Transactions  //TO BE IMPLEMENTED FOR Task 1c";
+	cout << "\n       7                  Search Transactions";
 	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR Task 1c";
 	cout << "\n       9                 Show Funds Available  //TO BE IMPLEMENTED FOR Task 1c";
 	cout << "\n       10         Transfer to another account  //TO BE IMPLEMENTED FOR Task 1c";
@@ -137,26 +137,30 @@ int UserInterface::readInCommand() const{
 }
 double UserInterface::readInAmount() const{
 	double amount;
-	cout << "\nENTER REQUIRED AMOUNT: ";
+	cout << "\nENTER AMOUNT: ";
 	cin >> amount;
 	return amount;
 }
 string UserInterface::readInTitle() const{
 	string title;
-	cout << "\nENTER REQUIRED TITLE: ";
+	cout << "\nENTER TITLE: ";
 	cin >> title; //TODO: check if valid - not blank string
 	return title;
 }
 Date UserInterface::readInDate() const{
 	int day, month, year;
-	cout << "\nENTER REQUIRED DAY: ";
+	cout << "\nENTER DAY: ";
 	cin >> day;
-	cout << "\nENTER REQUIRED MONTH: ";
+	cout << "\nENTER MONTH: ";
 	cin >> month;
-	cout << "\nENTER REQUIRED YEAR: ";
+	cout << "\nENTER YEAR: ";
 	cin >> year;
 	Date date(day, month, year); //TODO: check if valid - as done in option 8
 	return date;
+}
+Date UserInterface::readInValidDate(const Date& cd) const{
+	Date aDate(readInDate());
+	bool isValid(aDate.isValid(cd));
 }
 //output functions
 

@@ -85,11 +85,22 @@ const TransactionList TransactionList::getTransactionsForSearchCriterion(const s
 	}
 	return ret;
 }
-const TransactionList TransactionList::getTransactionsForSearchCriterion(const Date& date) const{
+const TransactionList TransactionList::getTransactionsForSearchCriterion(const Date& d) const{
 	TransactionList temp(*this);
 	TransactionList ret;
 	while (temp.size() > 0){
-		if ((temp.newestTransaction()).getDate() == date)
+		if ((temp.newestTransaction()).getDate() == d)
+			ret.addNewTransaction(temp.newestTransaction());
+		temp.deleteFirstTransaction();
+	}
+	return ret;
+}
+
+const TransactionList TransactionList::getTransactionsUpToDate(const Date& d) const{
+	TransactionList temp(*this);
+	TransactionList ret;
+	while (temp.size() > 0){
+		if ((temp.newestTransaction()).getDate() < d)
 			ret.addNewTransaction(temp.newestTransaction());
 		temp.deleteFirstTransaction();
 	}

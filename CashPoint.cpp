@@ -163,6 +163,8 @@ void CashPoint::performAccountProcessingCommand(int option) {
 				break;
 		case 7: m7_searchForTransactions();
 				break;
+		case 8: m8_clearTransactionsUpToDate();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -251,6 +253,19 @@ void CashPoint::m7c_showTransactionsForDate() const{
 	string str;
 	p_theActiveAccount_->produceTransactionsForSearchCriterion(date, n, str);
 	theUI_.showMatchingTransactionsOnScreen(date, n, str);
+}
+//---option 8
+void CashPoint::m8_clearTransactionsUpToDate() const{
+	assert(p_theActiveAccount_ != nullptr);
+	bool isEmpty(p_theActiveAccount_->isEmptyTransactionList());
+	if (!isEmpty){
+		Date cd(p_theActiveAccount_->getCreationDate());
+		Date d(theUI_.readInValidDate(cd));
+		int n;
+		string str;
+		p_theActiveAccount_->produceTransactionsUpToDate(d, n, str);
+	}
+	theUI_.showTransactionsUpToDateOnScreen(isEmpty, d, n, str); //TODO: implement from sequence 5
 }
 //------private file functions
 

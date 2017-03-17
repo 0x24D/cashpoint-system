@@ -37,6 +37,7 @@ public:
 	double	readInAmount() const;
 	string  readInTitle() const;
 	Date	readInDate() const;
+	Date	readInValidDate(const Date& cd) const;
 
     void	showProduceBalanceOnScreen(double bal) const;
     void	showDepositOnScreen(bool auth, double deposit) const;

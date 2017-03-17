@@ -91,8 +91,14 @@ void BankAccount::produceTransactionsForSearchCriterion(const string& title, int
 	n = trl.size();
 	str = trl.toFormattedString();
 }
-void BankAccount::produceTransactionsForSearchCriterion(const Date& date, int& n, string& str) const{
-	TransactionList trl(transactions_.getTransactionsForSearchCriterion(date));
+void BankAccount::produceTransactionsForSearchCriterion(const Date& d, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsForSearchCriterion(d));
+	n = trl.size();
+	str = trl.toFormattedString();
+}
+
+void BankAccount::produceTransactionsUpToDate(const Date& d, int& n, string& str) const{
+	TransactionList trl(transactions_.getTransactionsUpToDate(d));
 	n = trl.size();
 	str = trl.toFormattedString();
 }

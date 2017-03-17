@@ -29,6 +29,11 @@ const Date Date::currentDate() {	//returns the current date
 	struct tm& t(*localtime(&now));
     return Date(t.tm_mday, t.tm_mon + 1,  t.tm_year + 1900);
 }
+bool Date::isValid(const Date& date) const{
+	if (date < *this && *this < currentDate()) //TODO: extend validation to checking day/month
+		return true;
+	return false;
+}
 void Date::setDate(int d, int m, int y) {
 	day_ = d;
 	month_ = m;
