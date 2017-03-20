@@ -171,6 +171,13 @@ bool UserInterface::readInConfirmDeletion() const{
 	(toupper(input) == 'Y') ? ret = true : ret = false;
 	return ret;
 }
+
+double UserInterface::readInTransferAmount() const{
+	double amount;
+	cout << "\nAMOUNT TO TRANSFER: \234";
+	cin >> amount;
+	return amount;
+}
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen(double balance) const {
@@ -294,6 +301,11 @@ void UserInterface::showDeletionOfTransactionsUpToDateOnScreen(const int& n, con
 
 void UserInterface::showFundsAvailableOnScreen(const bool& isEmpty, const string& mad, const double& m) const{
 	cout <<"\n" << mad << "\nTOTAL WITHDRAWAL AMOUNT: \234" << m;
+}
+
+void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const{
+	if (trOutOK && trInOK)
+		cout << "\nTRANSFER SUCCESSFUL, AMOUNT TRANSFERRED: \234" << transferAmount;
 }
 
 //---------------------------------------------------------------------------

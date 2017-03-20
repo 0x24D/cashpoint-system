@@ -167,9 +167,38 @@ void CashPoint::performAccountProcessingCommand(int option) {
 				break;
 		case 9: m9_showFundsAvailableOnAllAccounts();
 				break;
+		case 10: m10_transferCashToAnotherAccount();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
+
+void CashPoint::attemptTransfer(BankAccount* transferAccount) const{
+	double transferAmount(theUI_.readInTransferAmount());
+	bool trOutOK(canTransferOut(transferAmount));
+	bool trInOK(canTransferIn(transferAmount));
+	if (trOutOK && trInOK)
+		recordTransfer(transferAmount, transferAccount);
+	theUI_.showTransferOnScreen(trOutOK, trInOK, transferAmount);
+}
+
+bool CashPoint::canTransferOut(const double& transferAmount) const{
+	if (p_theActiveAccount_->canWithdraw(transferAmount))
+		return true;
+	return false;
+}
+
+bool CashPoint::canTransferIn(const double& transferAmount) const{
+	return true;
+}
+
+void CashPoint::recordTransfer(const double& transferAmount, BankAccount* transferAccount) const{
+	string tAN(transferAccount->getAccountNumber());
+	p_theActiveAccount_->recordTransferOut(transferAmount, tAN);
+	string aAN(p_theActiveAccount_->getAccountNumber());
+	transferAccount->recordTransferOut(transferAmount, aAN);
+}
+
 //------ menu options
 //---option 1
 void CashPoint::m1_produceBalance() const {
@@ -294,6 +323,22 @@ void CashPoint::m9_showFundsAvailableOnAllAccounts(){
 	}
 	theUI_.showFundsAvailableOnScreen(isEmpty, mad, m);
 }
+//---option 10
+void CashPoint::m10_transferCashToAnotherAccount(){
+	assert(p_theActiveAccount_ != nullptr);
+	string str(p_theCashCard_->toFormattedString());
+	theUI_.showCardOnScreen(str);
+	str = FILEPATH + "account_" + theUI_.readInAccountToBeProcessed() + ".txt";
+	char validAccountCode(validateAccount(str));
+	theUI_.showValidateAccountOnScreen(validAccountCode, str);
+	if (validAccountCode == 0){
+		BankAccount* p_BA(activateBankAccount(str));
+		attemptTransfer(p_BA);
+		p_BA = releaseBankAccount(p_BA, str);
+	}
+		
+}
+
 //------private file functions
 
 bool CashPoint::canOpenFile(const string& filename) const {

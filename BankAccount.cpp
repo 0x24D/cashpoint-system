@@ -50,6 +50,18 @@ void BankAccount::recordDeposit(double amountToDeposit) {
     updateBalance(amountToDeposit);			//increase balance_
 }
 
+void BankAccount::recordTransferOut(const double& transferAmount, const string& tAN){
+	Transaction aTransaction("transfer_to_" + tAN, -transferAmount);
+	transactions_.addNewTransaction(aTransaction);
+	updateBalance(-transferAmount);
+}
+
+void BankAccount::recordTransferIn(const double& transferAmount, const string& aAN){
+	Transaction aTransaction("transfer_from_" + aAN, transferAmount);
+	transactions_.addNewTransaction(aTransaction);
+	updateBalance(transferAmount);
+}
+
 double BankAccount::maxWithdrawalAllowed() const {
 //return borrowable amount
     return balance_;

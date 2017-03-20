@@ -31,6 +31,8 @@ public:
 	const string prepareFormattedStatement() const;
 
     void recordDeposit(double amount);
+	void recordTransferOut(const double& amount, const string& tAN);
+	void recordTransferIn(const double& amount, const string& aAN);
 
 	double maxWithdrawalAllowed() const;
 	bool canWithdraw(double amount) const;

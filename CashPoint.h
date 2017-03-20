@@ -34,8 +34,11 @@ private:
 	void processOneCustomerRequests();
 	void processOneAccountRequests();
 	void searchTransactions() const;
-
     void performSubMenuCommand(int);
+	void attemptTransfer(BankAccount* transferAccount) const;
+	bool canTransferOut(const double& amount) const;
+	bool canTransferIn(const double& amount) const;
+	void recordTransfer(const double& transferAmount, BankAccount* transferAccount) const;
     //commands
     //option 1
     void m1_produceBalance() const;
@@ -58,6 +61,8 @@ private:
 	void m8_clearTransactionsUpToDate() const;
 	//option 9
 	void m9_showFundsAvailableOnAllAccounts();
+	//option 10
+	void m10_transferCashToAnotherAccount();
 
     //support file handling functions and creation of dynamic objects
     bool canOpenFile(const string&) const;
