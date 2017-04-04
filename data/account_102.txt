@@ -1,0 +1,11 @@
+102
+10/12/2005
+100
+100
+29/3/2017 11:11:37 transfer_to_101 -100
+26/2/2017 10:36:36 transfer_out_to_acct_301 -50
+26/2/2017 10:31:8 withdrawal_from_ATM -1
+26/5/2016 10:30:14 transfer_out_to_acct_101 -10
+7/5/2016 10:29:8 deposit_to_ATM 500
+3/3/2016 15:45:5 withdrawal_from_ATM -333.33
+3/3/2016 15:44:49 withdrawal_from_ATM -12.5
